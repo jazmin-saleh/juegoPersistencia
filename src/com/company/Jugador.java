@@ -1,11 +1,13 @@
 package com.company;
 
 public class Jugador {
-
+    //startingNumber: es el puesto en todo el juego
+    //pointsObtained: son los puntos obtenidos en todo el juego
     private String name;
     private String location;
     private int startingNumber;
     private int pointsObtained;
+
 
     public Jugador(String name, String location, int startingNumber, int pointsObtained) {
         this.name = name;

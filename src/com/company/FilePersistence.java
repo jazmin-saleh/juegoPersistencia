@@ -11,7 +11,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class FilePersistence {
+    //La ruta del archivo
     private Path path;
+    //Asociacion de la asociacion
     private File file;
     private String nameFile;
     private String pathFile;
@@ -53,6 +55,7 @@ public class FilePersistence {
         path = Paths.get(pathFile+nameFile);
     }
 
+    //LO que hace este metodo es leer el archivo plano y devolver el contendio del archivo
     public String readFile()throws IOException {
         BufferedReader input = Files.newBufferedReader(path, Charset.defaultCharset());
         StringBuilder output = new StringBuilder();
@@ -65,6 +68,9 @@ public class FilePersistence {
         return output.toString();
     }
 
+    //En este metodo se gusran los datos con estos pasos:
+    //1. escribir, 2.crear, 3.sobreescribir
+    //Chasrest- es para cuando tengamos cosas como @ las interprete bien
     public void writeFile(String content) throws IOException{
         BufferedWriter output = Files.newBufferedWriter(path, Charset.defaultCharset(),
                 StandardOpenOption.WRITE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
