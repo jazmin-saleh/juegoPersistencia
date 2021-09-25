@@ -35,7 +35,6 @@ public class Main {
 
         try {
             //service.removePlayer();
-            service.deletePlayer("565");
             service.dumpData();
         } catch (IOException e) {
             e.printStackTrace();
