@@ -19,7 +19,7 @@ public class Main {
 
 
         ServiceJugador service = new ServiceJugador("","jugadores.csv");
-        String name = JOptionPane.showInputDialog("Esrciba telefono:");
+        String name = JOptionPane.showInputDialog("Esrciba nombre:");
         String location = JOptionPane.showInputDialog("Escribir ubicacion");
         int startingNumber = Integer.parseInt(JOptionPane.showInputDialog("Escribir numero de partida"));
         int pointsObtained = Integer.parseInt(JOptionPane.showInputDialog("Escribir puntos obtenidos"));

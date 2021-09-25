@@ -73,7 +73,6 @@ public class ServiceJugador {
         return false;
     }
 
-
     //Eliminra todos los juegadores
     public void removePlayer(){
         jugador.clear();
@@ -99,6 +98,7 @@ public class ServiceJugador {
     public ArrayList<Jugador> getJugador(){
         return (ArrayList<Jugador>) jugador.clone();
     }
+
     //Obtender todos los jugadores
     public String getJugadores(){
         String a ="";
