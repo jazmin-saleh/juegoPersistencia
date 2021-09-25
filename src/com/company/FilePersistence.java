@@ -55,7 +55,7 @@ public class FilePersistence {
         path = Paths.get(pathFile+nameFile);
     }
 
-    //LO que hace este metodo es leer el archivo plano y devolver el contendio del archivo
+    //Lo que hace este metodo es leer el archivo plano y devolver el contendio del archivo
     public String readFile()throws IOException {
         BufferedReader input = Files.newBufferedReader(path, Charset.defaultCharset());
         StringBuilder output = new StringBuilder();

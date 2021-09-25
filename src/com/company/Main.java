@@ -17,24 +17,34 @@ public class Main {
         System.out.println("el archivo no existe");
     }*/
 
+
         ServiceJugador service = new ServiceJugador("","jugadores.csv");
         String name = JOptionPane.showInputDialog("Esrciba telefono:");
         String location = JOptionPane.showInputDialog("Escribir ubicacion");
         int startingNumber = Integer.parseInt(JOptionPane.showInputDialog("Escribir numero de partida"));
         int pointsObtained = Integer.parseInt(JOptionPane.showInputDialog("Escribir puntos obtenidos"));
-        Jugador jugador = new Jugador(name,location,startingNumber,pointsObtained);
+        int numberMatches = Integer.parseInt(JOptionPane.showInputDialog("Escribir numero de partidos"));
+        Jugador jugador = new Jugador(name,location,startingNumber,pointsObtained,numberMatches);
         service.addPlayer(jugador);
+       // service.removePlayer();
         try {
             service.loadDate();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
         try {
+            //service.removePlayer();
+            service.deletePlayer("565");
             service.dumpData();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //service.removePlayer();
+        System.out.println(service.getJugadores());
+        System.out.println("Nuetsro jugadores: ");
+        System.out.println(service.getJugador());
+
     }
 }

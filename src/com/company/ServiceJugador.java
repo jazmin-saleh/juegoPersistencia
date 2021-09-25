@@ -1,14 +1,16 @@
 package com.company;
 
+import javax.swing.text.html.HTMLDocument;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class ServiceJugador {
 
     public ArrayList<Jugador> jugador;
-    private FilePlane file;
+    private final FilePlane file;
 
     public ServiceJugador(String path, String name) {
         jugador = new ArrayList<>();
@@ -29,8 +31,8 @@ public class ServiceJugador {
                     String location = tokens.nextToken();
                     int startingNumber = Integer.parseInt(tokens.nextToken());
                     int pointsObtained = Integer.parseInt(tokens.nextToken());
-
-                    jugador.add(new Jugador(name,location,startingNumber,pointsObtained));
+                    int numberMatches = Integer.parseInt(tokens.nextToken());
+                    jugador.add(new Jugador(name,location,startingNumber,pointsObtained, numberMatches));
                 }catch (NumberFormatException e){
                     e.printStackTrace();
                 }catch (NoSuchElementException e){
@@ -50,6 +52,18 @@ public class ServiceJugador {
       return null;
     }
 
+    public int findPlayerName(String number) {
+        int cont = 0;
+        Iterator var3;
+        for (var3 = this.jugador.iterator(); var3.hasNext(); cont++) {
+            Jugador j = (Jugador) var3.next();
+            if (number.equals(j.getName())) {
+                return cont;
+            }
+        }
+        return -1;
+    }
+
     //adicionar
     public boolean addPlayer(Jugador jugadores){
         if (findPlayer(jugadores.getName())==null){
@@ -57,6 +71,12 @@ public class ServiceJugador {
             return  true;
         }
         return false;
+    }
+
+
+    //Eliminra todos los juegadores
+    public void removePlayer(){
+        jugador.clear();
     }
 
     //Agregar datos al archivo plano (jugadores.csv)
@@ -69,12 +89,22 @@ public class ServiceJugador {
             String location = j.getLocation();
             int startingNumber = j.getStartingNumber();
             int pointsObtained = j.getPointsObtained();
-            dump[cont++] = name+","+location+","+startingNumber+","+pointsObtained;
+            int numberMatches = j.getNumberMatches();
+            dump[cont++] = name+","+location+","+startingNumber+","+pointsObtained+","+numberMatches;
         }
         file.setContentFile(dump);
     }
 
+    //Obtener todos los jugadores
     public ArrayList<Jugador> getJugador(){
         return (ArrayList<Jugador>) jugador.clone();
+    }
+    //Obtender todos los jugadores
+    public String getJugadores(){
+        String a ="";
+        for (Jugador j:jugador){
+            a += "\n"+j.toString()+"\n";
+        }
+        return a;
     }
 }
